@@ -1,0 +1,15 @@
+{
+    "welcomeFile": "index.html",
+    "authenticationMethod": "route",
+    "routes": [
+        {
+            "source": "/core-api(.*)",
+            "target": "$1",
+            "destination": "core-api"
+        },
+        {
+            "source": "^/(.*)",
+            "localDir": "resources"
+        }
+    ]
+}

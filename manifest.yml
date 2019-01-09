@@ -1,0 +1,25 @@
+applications:
+- name: cfsso-api
+  host: cfsso-api
+  path: ./api/target/api-0.0.1-SNAPSHOT.jar
+  buildpacks:
+    - java_buildpack
+  memory: 1024M  
+  services:
+   - xsuaa
+- name: cfsso-app-router
+  host: cfsso-app-router
+  path: ./app-router/
+  buildpacks:
+    - nodejs_buildpack
+  env:
+    destinations: >
+      [
+        {
+          "name": "core-api",
+          "url": "https://cfsso-api.cfapps.eu10.hana.ondemand.com",
+          "forwardAuthToken": true
+        }
+      ]
+  services:
+   - xsuaa
