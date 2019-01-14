@@ -17,7 +17,7 @@ public class PrivateController {
     @ResponseBody
     public String privateHello() {
         String username = jwtData.get("email");
-        return "Hi " + username + ". This is a private controller";
+        return "Hi " + username + ". This is a private controller protected by xs app router";
     }
     
 }
