@@ -1,6 +1,6 @@
-package com.core.api.api.controllers;
+package com.core.api.controllers;
 
-import com.core.api.api.JWTData;
+import com.core.api.services.JWTData;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

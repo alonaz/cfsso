@@ -1,4 +1,4 @@
-package com.core.api.api;
+package com.core.api.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,7 @@
-package com.core.api.api;
+package com.core.api.configuration;
+
+import com.core.api.services.JWTData;
+import com.core.api.services.RequestInterceptorService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
-    MyCustomInterceptor customInterceptor;
+    RequestInterceptorService customInterceptor;
     
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

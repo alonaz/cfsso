@@ -1,4 +1,4 @@
-package com.core.api.api;
+package com.core.api.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

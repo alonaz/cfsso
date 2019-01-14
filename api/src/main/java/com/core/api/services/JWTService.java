@@ -1,9 +1,11 @@
-package com.core.api.api;
+package com.core.api.services;
 
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+
+import com.core.api.configuration.VcapServicesUaaPublicKey;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

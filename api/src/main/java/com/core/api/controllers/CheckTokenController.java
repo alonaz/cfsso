@@ -1,6 +1,6 @@
-package com.core.api.api.controllers;
+package com.core.api.controllers;
 
-import com.core.api.api.VcapServicesUaaPublicKey;
+import com.core.api.configuration.VcapServicesUaaPublicKey;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
