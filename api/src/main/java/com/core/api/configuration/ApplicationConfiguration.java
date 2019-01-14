@@ -5,16 +5,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties("vcap.services.xsuaa.credentials")
-public class VcapServicesUaaPublicKey {
+public class ApplicationConfiguration {
 
     private String verificationkey;
 
     public void setVerificationkey(String key) {
         this.verificationkey = key;
-    }
-
-    public String getVerificationKey() {
-        return this.verificationkey;
     }
     
     public String getRawVerificationKey() {

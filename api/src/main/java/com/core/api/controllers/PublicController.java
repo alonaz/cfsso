@@ -8,23 +8,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloController {
+public class PublicController {
 
     @Autowired
     private JWTData jwtData;
 
-    public void setJwtData(JWTData jwtData) {
-        this.jwtData = jwtData;
-    }
-
-    @RequestMapping("/hi")
+    @RequestMapping("/public")
     @ResponseBody
-    public String hello() {
+    public String publicHello() {
         String username = jwtData.get("email");
-        if (username != null && username.length() != 0) {
-            return "Hi " + username  + " from core API";
-        } else {
-            return "Hi GUEST from core API";
-        }
+        return "Hi " + username + ". This is a public controller";
     }
+    
 }

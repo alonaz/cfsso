@@ -5,7 +5,7 @@ import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
-import com.core.api.configuration.VcapServicesUaaPublicKey;
+import com.core.api.configuration.ApplicationConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,49 +19,42 @@ import io.jsonwebtoken.Jwts;
 public class JWTService {
 
     @Autowired
-    public VcapServicesUaaPublicKey vsupk;
+    public ApplicationConfiguration conf;
     
+    @Autowired
+    JWTData jwtData;
+
     private PublicKey pkey = null;
 
-    public boolean validateToken(String token) {
+    public boolean validateAndInitToken(String token) {
+        boolean res = false;
         PublicKey pkey = getKey();
-        try {
-            Jwts.parser().setSigningKey(pkey).parseClaimsJws(token);
-            return true;
-        } catch (JwtException e) {
-            System.out.println("Error validating token: " + e.toString());
-            return false;
-        }
-    }
 
-    public Jws<Claims> getClaims(String token) {
-        PublicKey pkey = getKey();
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(pkey).parseClaimsJws(token);
-            return claims;
+            jwtData.setClaims(claims);
+            res = true;
         } catch (JwtException e) {
-            System.out.println("Error getting claims: " + e.toString());
-            return null;
+            System.out.println("Error validating token: " + e.toString());
         }
-    }
 
+        return res;
+    }
     private PublicKey getKey() {
         if (pkey != null) {
             return pkey;
         } else {
             try {
-                String publicKey = vsupk.getRawVerificationKey();
+                String publicKey = conf.getRawVerificationKey();
                 byte[] byteKey = Base64.getDecoder().decode(publicKey);
                 X509EncodedKeySpec X509publicKey = new X509EncodedKeySpec(byteKey);
-                KeyFactory kf = KeyFactory.getInstance("RSA");
-        
+                KeyFactory kf = KeyFactory.getInstance("RSA");        
                 return kf.generatePublic(X509publicKey);
             }
             catch(Exception e){
-                e.printStackTrace();
+                e.printStackTrace();                        
+                return null;
             }
-        
-            return null;    
         }
     }
 }

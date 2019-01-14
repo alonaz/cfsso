@@ -20,7 +20,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(customInterceptor).excludePathPatterns("/pkey", "/token", "/rawpkey");
+        registry.addInterceptor(customInterceptor).excludePathPatterns("/public");
     }
 
     @Bean

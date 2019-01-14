@@ -12,6 +12,10 @@ public class JWTData {
     }
 
     public String get(String key) {
-        return claims.getBody().get(key).toString();
+        if (claims != null) {
+            return claims.getBody().get(key).toString();
+        } else {
+            return null;
+        }
     }
 }
