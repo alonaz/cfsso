@@ -49,8 +49,6 @@ public class JWTService {
         } else {
             try {
                 String publicKey = vsupk.getRawVerificationKey();
-                publicKey = publicKey.replace("-----BEGIN PUBLIC KEY-----\n", "");
-                publicKey = publicKey.replace("-----END PUBLIC KEY-----", "");            
                 byte[] byteKey = Base64.getDecoder().decode(publicKey);
                 X509EncodedKeySpec X509publicKey = new X509EncodedKeySpec(byteKey);
                 KeyFactory kf = KeyFactory.getInstance("RSA");

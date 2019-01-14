@@ -17,6 +17,9 @@ public class MyCustomInterceptor implements HandlerInterceptor {
     @Autowired
     public JWTService jwtService;
 
+    @Autowired
+    JWTData jwtData;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String auth = request.getHeader("Authorization");
@@ -31,9 +34,7 @@ public class MyCustomInterceptor implements HandlerInterceptor {
             try {
                 String rawToken = auth.substring("Bearer ".length());
                 Jws<Claims> claims = jwtService.getClaims(rawToken);
-                String userName = claims.getBody().get("given_name").toString();
-                //OK, we can trust this JWT
-                response.addHeader("username", userName);
+                jwtData.setClaims(claims);
                 return true;
             } catch (JwtException e) {
                 response.sendError(403, "Unauthorized: Bad token");
