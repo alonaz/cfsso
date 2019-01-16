@@ -26,19 +26,28 @@ In this example there are 2 components:
 
 ## How to run it
 
-1. git clone this repo
-2. Login to CF with your org / space via the cf cli
+1. Clone this git repo:
+```bash
+git clone https://github.com/alonaz/cfsso.git
+cd cfsso/
+```
+2. Login to CF with your org / space via the cf cli:
+```bash
+cf login -a YOUR_CF_API_URL
+```
+and then your user/password.
+
 3. Create uaa service:
 ```bash
 cf create-service xsuaa application xsuaa -c '{"xsappname":"cfsso","tenant-mode":"dedicated"}'
 ```
-4. Package the spring boot application
+4. Package the spring boot application:
 ```bash
 cd api
 mvn package
 cd ..
 ```
-4. You might need to change the manifest.yml file and point it to the corect url where your api application would be deployed. The URL depends on your CF provider, your account, and some additional params.
+4. You might need to change the manifest.yml (at the root of this repo) file and point it to the corect url where your api application would be deployed. The URL depends on your CF provider, your account, and some additional params.
 5. Deploy both applications to Cloud Foundry:
 ```bash
 cf push
