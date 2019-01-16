@@ -24,7 +24,7 @@ In this example there are 2 components:
 - The app-router - which in this case acts as the wiring between our backend application and the UAA. The app router will redirect the users browser to the UAA login screen, and then handle the communication with the UAA needed to get the generated JWT. Then the app router will forward the token to any other application which was configured in a standard Authorization header.
 - The api application is a spring boot application which reads the Authorization header, checks the signiture correctness against the UAA public key, and allows for any class in the application to get information from the token, in case the token is valid. This flow is done manually without usage of any security frameworks such as spring security.
 
-#How to run it
+## How to run it
 
 1. git clone this repo
 2. Login to CF with your org / space via the cf cli
@@ -51,7 +51,7 @@ This is the url when I use SAP Cloud Platform trail account.
 7. You will be redirected to a login screen. Login with the same account you used when you registered to SAP Cloud Platform trail account.
 8. Once you login you will be redirected to /private controller and will see the expected message.
 
-# Troubleshooting
+## Troubleshooting
 The api spring boot application also uses the spring boot actuator. You can see special configuration of the actuator in the application.properties file. This allows us easily see the environment variables exposed to the application by using the /actuator/env endpoint for example
 
 ```bash
@@ -63,3 +63,6 @@ And also will allow you to see the actual http Authorization header that the app
 ```bash
 https://cfsso-app-router.cfapps.eu10.hana.ondemand.com/core-api/actuator/httptrace 
 ```
+
+## Contact
+Contact me for questions on twitter @alonaizberg
